@@ -1,6 +1,8 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestPage extends baseTest{
 
@@ -11,8 +13,8 @@ public class TestPage extends baseTest{
     }
 
     @Test
-    void sampleOnly() {
+    void savePlace() {
         MainPage page = new MainPage(driver);
-        page.Destination();
+        page.savePlace();
     }
 }

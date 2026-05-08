@@ -1,4 +1,4 @@
-package org.example;
+package com.waze.automation.base;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -7,14 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.Duration;
 
-class baseTest {
+public class Base {
 
     public AndroidDriver driver;
 
     @BeforeEach
-    void setUp() throws MalformedURLException, URISyntaxException {
+    public void setUp() throws MalformedURLException, URISyntaxException {
         UiAutomator2Options options = new UiAutomator2Options()
                 .setPlatformName("Android")
                 .setDeviceName("ANQL6R3330008390")
@@ -25,14 +24,19 @@ class baseTest {
                 .setAppPackage("com.waze")
                 .setAppWaitActivity("com.waze.*");
 
+        options.setCapability("appium:shouldTerminateApp", true);
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
-        driver.activateApp("com.waze");
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            try {
+                driver.terminateApp("com.waze");
+                driver.quit();
+            } catch (Exception e) {
+                //
+            }
         }
     }
 }

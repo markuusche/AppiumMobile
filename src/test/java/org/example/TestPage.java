@@ -6,7 +6,13 @@ public class TestPage extends baseTest{
 
     @Test
     void selectDestination() {
-        Pages page = new Pages(driver);
+        MainPage page = new MainPage(driver);
+        page.Destination();
+    }
+
+    @Test
+    void sampleOnly() {
+        MainPage page = new MainPage(driver);
         page.Destination();
     }
 }

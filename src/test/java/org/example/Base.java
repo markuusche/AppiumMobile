@@ -7,10 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Duration;
 
 class baseTest {
 
-    private AndroidDriver driver;
+    public AndroidDriver driver;
 
     @BeforeEach
     void setUp() throws MalformedURLException, URISyntaxException {
@@ -20,9 +21,12 @@ class baseTest {
                 .setAutomationName("UiAutomator2")
                 .setAutoGrantPermissions(true)
                 .setNoReset(true)
-                .setAppPackage("com.waze");
+                .setEnforceAppInstall(true)
+                .setAppPackage("com.waze")
+                .setAppWaitActivity("com.waze.*");
 
-       driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+        driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+        driver.activateApp("com.waze");
     }
 
     @AfterEach
